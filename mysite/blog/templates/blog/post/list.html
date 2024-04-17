@@ -1,11 +1,11 @@
 {% extends "blog/base.html" %}
 
-{% block title %}mój blog {% endblock %}
+{% block title %} Mój Blog {% endblock %}
 {% block content %}
-    <h1>Mój blog</h1>
+    <h1>Mój Blog</h1>
     {% for post in posts %}
     <h2>
-        <a href="{% url 'blog:post_detail' post.id %}">
+        <a href="{{ post.get_absolute_url }}">
             {{post.title}}
         </a>
     </h2>
@@ -13,16 +13,7 @@
         Opublikowany {{post.publish}} przez {{post.author}}
     </p>
     {{post.body|truncatewords:30|linebreaks}}
-    {% endfor%}
+    {% endfor %}
+    {% include "pagination.html" with page=page_obj %}
 {% endblock %}
 
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>Title</title>-->
-<!--</head>-->
-<!--<body>-->
-
-<!--</body>-->
-<!--</html>-->
